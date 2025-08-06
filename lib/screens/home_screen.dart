@@ -141,12 +141,12 @@ class HomeScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           
-                          // Bouton AR - Explorer en AR
+                          // Bouton AR - Explore en AR
                           _buildActionButton(
                             context: context,
                             icon: Icons.view_in_ar,
-                            title: 'Explorer en AR',
-                            subtitle: 'Mode réalité augmentée',
+                            title: 'Explore en AR',
+                            subtitle: '360° Panorama Experience',
                             onTap: () {
                               Navigator.push(
                                 context,

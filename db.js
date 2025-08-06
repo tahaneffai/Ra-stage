@@ -46,18 +46,18 @@ async function initializeDatabase() {
       // Insérer les données initiales avec toutes les stations demandées
       const insertDataQuery = `
         INSERT INTO gares (nom, ville, latitude, longitude, telephone, description) VALUES
-        ('Tanger Ville', 'Tanger', 35.7801, -5.8125, '+212-539-001', 'Gare maritime moderne au nord du Maroc, point de départ vers l\'Europe'),
-        ('Casablanca Voyageurs', 'Casablanca', 33.5731, -7.5898, '+212-522-003', 'Plus grande gare du Maroc, hub principal du réseau ferroviaire'),
-        ('Rabat Ville', 'Rabat', 34.0209, -6.8416, '+212-537-002', 'Gare principale de la capitale administrative'),
-        ('Rabat Agdal', 'Rabat', 34.0189, -6.8486, '+212-537-004', 'Gare secondaire de Rabat, desservant le quartier Agdal'),
-        ('Fès', 'Fès', 34.0181, -5.0078, '+212-535-005', 'Gare historique de la ville impériale, centre culturel du Maroc'),
-        ('Marrakech', 'Marrakech', 31.6295, -7.9811, '+212-524-006', 'Gare de la ville rouge, destination touristique majeure'),
-        ('Oujda', 'Oujda', 34.6814, -1.9086, '+212-536-007', 'Gare de l\'est du Maroc, proche de la frontière algérienne'),
-        ('Kénitra', 'Kénitra', 34.2610, -6.5802, '+212-537-008', 'Gare importante entre Rabat et Casablanca'),
-        ('Settat', 'Settat', 33.0013, -7.6167, '+212-523-009', 'Gare de la région de Chaouia-Ouardigha'),
-        ('Oued Zem', 'Oued Zem', 32.8636, -6.5736, '+212-523-010', 'Gare de la ville minière, centre économique local'),
-        ('Mohammedia', 'Mohammedia', 33.6944, -7.3829, '+212-523-011', 'Gare côtière entre Casablanca et Rabat'),
-        ('El Jadida', 'El Jadida', 33.2316, -8.5007, '+212-523-012', 'Gare de la ville côtière, patrimoine UNESCO')
+        ('Tanger Ville', 'Tanger', 35.7801, -5.8125, '+212-539-001', 'Gare maritime moderne au nord du Maroc'),
+        ('Casablanca Voyageurs', 'Casablanca', 33.5731, -7.5898, '+212-522-002', 'Plus grande gare ferroviaire du Maroc'),
+        ('Rabat Ville', 'Rabat', 34.0209, -6.8416, '+212-537-003', 'Gare historique du centre-ville'),
+        ('Rabat Agdal', 'Rabat', 34.0025, -6.8469, '+212-537-004', 'Gare moderne pour les trains Al Boraq (TGV)'),
+        ('Fès', 'Fès', 34.0331, -5.0003, '+212-535-005', 'Gare historique et hub ferroviaire du Maroc'),
+        ('Marrakech', 'Marrakech', 31.6295, -7.9811, '+212-524-006', 'Gare touristique et emblématique'),
+        ('Oujda', 'Oujda', 34.6867, -1.9114, '+212-536-007', 'Gare de l''Oriental, terminus est du réseau ONCF'),
+        ('Kénitra', 'Kénitra', 34.2610, -6.5790, '+212-537-008', 'Gare importante pour le TGV'),
+        ('Settat', 'Settat', 33.0001, -7.6200, '+212-523-009', 'Gare régionale entre Casa et Marrakech'),
+        ('Oued Zem', 'Oued Zem', 32.8662, -6.5653, '+212-523-010', 'Petite gare régionale'),
+        ('Mohammedia', 'Mohammedia', 33.6835, -7.3843, '+212-523-011', 'Gare côtière entre Rabat et Casa'),
+        ('El Jadida', 'El Jadida', 33.2560, -8.5081, '+212-523-012', 'Gare touristique sur la côte Atlantique')
       `;
       
       await pool.query(insertDataQuery);
