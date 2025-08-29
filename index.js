@@ -1,9 +1,12 @@
 const express = require('express');
 const cors = require('cors');
+const http = require('http');
 require('dotenv').config();
 
 const { initializeDatabase } = require('./db');
 const garesRoutes = require('./routes/gares');
+const realtimeRoutes = require('./routes/realtime');
+const RealtimeService = require('./realtime-service');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,8 +16,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static files
+app.use(express.static('public'));
+
 // Routes
 app.use('/api/gares', garesRoutes);
+app.use('/api/realtime', realtimeRoutes);
 
 // Route racine
 app.get('/', (req, res) => {
@@ -63,8 +70,14 @@ async function startServer() {
     // Initialiser la base de données
     await initializeDatabase();
     
+    // Créer le serveur HTTP pour Socket.IO
+    const server = http.createServer(app);
+    
+    // Initialiser le service temps réel
+    const realtimeService = new RealtimeService(server);
+    
     // Démarrer le serveur
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log('🚀 Serveur démarré avec succès!');
       console.log(`📍 URL: http://localhost:${PORT}`);
       console.log(`🌍 Environnement: ${process.env.NODE_ENV || 'development'}`);
@@ -74,6 +87,8 @@ async function startServer() {
       console.log(`   POST http://localhost:${PORT}/api/gares`);
       console.log(`   PUT  http://localhost:${PORT}/api/gares/:id`);
       console.log(`   DELETE http://localhost:${PORT}/api/gares/:id`);
+      console.log('🔌 WebSocket: ws://localhost:${PORT}/socket.io');
+      console.log('📡 Temps réel: http://localhost:${PORT}/api/realtime');
       console.log('🔧 Utilisez Ctrl+C pour arrêter le serveur');
     });
     

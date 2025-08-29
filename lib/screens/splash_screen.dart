@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
-import '../widgets/modern_background.dart';
+import '../widgets/creative_background.dart';
 import 'home_screen.dart';
 
 /// Écran de démarrage avec animations
@@ -130,8 +130,8 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Stack(
         children: [
-          // Arrière-plan animé
-          AnimatedModernBackground(
+          // Arrière-plan créatif animé
+          CreativeBackground(
             isDark: isDark,
             child: Container(), // Empty container as child
           ),

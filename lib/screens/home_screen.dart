@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'map_screen.dart';
+import 'interactive_map_screen.dart';
 import 'ar_screen.dart';
+import 'outside_station_street_view_page.dart';
 import '../constants/app_colors.dart';
-import '../widgets/modern_background.dart';
+import '../widgets/creative_background.dart';
 import '../utils/demo_mode.dart';
 
 /// Écran d'accueil de l'application TrainSight
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
     return Scaffold(
-      body: AnimatedModernBackground(
+      body: CreativeBackground(
         isDark: isDark,
         child: SafeArea(
           child: Column(
@@ -124,17 +125,17 @@ class HomeScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 48),
                           
-                          // Bouton principal - Voir la carte
+                          // Bouton principal - Carte interactive
                           _buildActionButton(
                             context: context,
                             icon: Icons.map_outlined,
-                            title: 'Voir la carte',
-                            subtitle: 'Carte interactive des gares',
+                            title: 'Carte interactive',
+                            subtitle: 'Explorez les gares du Maroc',
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const MapScreen(),
+                                  builder: (context) => const InteractiveMapScreen(),
                                 ),
                               );
                             },
@@ -152,6 +153,23 @@ class HomeScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const ARScreen(),
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          
+                          // Bouton Street View - Test
+                          _buildActionButton(
+                            context: context,
+                            icon: Icons.streetview,
+                            title: 'Street View Test',
+                            subtitle: 'Test 360° Station Views',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const OutsideStationStreetViewPage(),
                                 ),
                               );
                             },
