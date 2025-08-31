@@ -1,0 +1,29 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    
+    // Fix for plugin namespace issues
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                if (!android.hasProperty('namespace')) {
+                    namespace project.group ?: "com.example.${project.name}"
+                }
+            }
+        }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.layout.buildDirectory
+}

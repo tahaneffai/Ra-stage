@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:panorama/panorama.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../constants/app_colors.dart';
 import '../widgets/modern_background.dart';
@@ -67,13 +66,15 @@ class _ARScreenState extends State<ARScreen> with TickerProviderStateMixin {
     return Scaffold(
       body: Stack(
         children: [
-          // Panorama Viewer
+          // Image Viewer (replacing Panorama)
           AnimatedBuilder(
             animation: _fadeAnimation,
             builder: (context, child) {
               return Opacity(
                 opacity: _fadeAnimation.value,
-                child: Panorama(
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
                   child: Image.asset(
                     _isInside 
                         ? 'assets/panoramas/inside_station.jpg'
@@ -103,7 +104,7 @@ class _ARScreenState extends State<ARScreen> with TickerProviderStateMixin {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                '360° Panorama View',
+                                'Station View',
                                 style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   color: Colors.white70,
@@ -111,7 +112,7 @@ class _ARScreenState extends State<ARScreen> with TickerProviderStateMixin {
                               ),
                               const SizedBox(height: 16),
                               Text(
-                                'Replace with actual panorama images',
+                                'Panorama images will be added later',
                                 style: GoogleFonts.poppins(
                                   fontSize: 14,
                                   color: Colors.white54,
